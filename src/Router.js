@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import ContactList from './components/ContactList';
 import ContactCreate from './components/ContactCreate';
 import ContactEdit from './components/ContactEdit';
+import firebase from './firebase/config';
 
 const RouterComponent = () => {
   return (
