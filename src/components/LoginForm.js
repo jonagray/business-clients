@@ -14,14 +14,16 @@ class LoginForm extends Component {
   }
 
   onButtonPress() {
-    const {email, password} = this.props;
+    const {email, password, navigation} = this.props;
     this.props.loginUser({email, password});
+    this.props.navigation.navigate('Contacts');
   }
 
   renderButton() {
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
+    // return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>;
     return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>;
   }
 

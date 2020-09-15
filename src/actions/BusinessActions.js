@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import {Actions} from 'react-native-router-flux';
+// import {Actions} from 'react-native-router-flux';
 import {
   CONTACT_UPDATE,
   CONTACT_FETCH_SUCCESS,
@@ -23,7 +23,7 @@ export const contactCreate = ({name, phone, email, notes}) => {
       .push({name, phone, email, notes})
       .then(() => {
         dispatch({type: CLEAR_CONTACT_FORM});
-        Actions.pop();
+        // Actions.pop();
       });
   };
 };
@@ -51,7 +51,7 @@ export const contactSave = ({name, phone, email, notes, uid}) => {
       .set({name, phone, email, notes})
       .then(() => {
         dispatch({type: CLEAR_CONTACT_FORM});
-        Actions.pop();
+        // Actions.pop();
       });
   };
 };
@@ -65,7 +65,7 @@ export const contactDelete = ({uid}) => {
       .ref(`/users/${currentUser.uid}/contacts/${uid}`)
       .remove()
       .then(() => {
-        Actions.pop();
+        // Actions.pop();
       });
   };
 };

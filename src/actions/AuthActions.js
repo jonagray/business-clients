@@ -1,5 +1,5 @@
-import firebase from 'firebase';
-import {Actions} from 'react-native-router-flux';
+import firebase from '../firebase/config';
+// import {Actions} from 'react-native-router-flux';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -7,6 +7,8 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
 } from './types';
+
+// const {navigate} = this.props.navigation;
 
 export const emailChanged = (text) => {
   return {
@@ -30,6 +32,7 @@ export const loginUser = ({email, password}) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => loginUserSuccess(dispatch, user))
+
       .catch((error) => {
         console.log(error);
 
@@ -37,6 +40,7 @@ export const loginUser = ({email, password}) => {
           .auth()
           .createUserWithEmailAndPassword(email, password)
           .then((user) => loginUserSuccess(dispatch, user))
+
           .catch(() => loginUserFail(dispatch));
       });
   };
@@ -52,5 +56,7 @@ const loginUserSuccess = (dispatch, user) => {
     payload: user,
   });
 
-  Actions.main();
+  // this.props.navigation.navigate('Contacts');
+
+  // Actions.main();
 };
