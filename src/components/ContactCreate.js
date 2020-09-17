@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {clearContactForm, contactCreate} from '../actions';
 import {Card, CardSection, Button} from './common';

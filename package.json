@@ -10,8 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.2.1",
     "@react-native-community/masked-view": "^0.1.10",
     "deprecated-react-native-listview": "0.0.6",
+    "expo-font": "^8.2.2",
+    "feather-icons": "^4.28.0",
     "firebase": "^7.17.1",
     "lodash": "^4.17.19",
     "react": "16.13.1",
@@ -22,6 +25,7 @@
     "react-native-router-flux": "^3.45.0",
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
+    "react-native-vector-icons": "^7.1.0",
     "react-navigation": "^4.4.0",
     "react-navigation-stack": "^2.8.2",
     "react-redux": "^7.2.1",

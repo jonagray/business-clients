@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Picker} from 'react-native';
+import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {contactUpdate} from '../actions';
 import {CardSection, Input} from './common';
@@ -13,8 +13,6 @@ class ContactForm extends Component {
             label="Name"
             placeholder="Jane"
             value={this.props.name}
-            // ES6 destructuring/syntax shortening example (line 17)
-            // onChangeText={text => this.props.employeeUpdate({ prop: 'name', value: text })}
             onChangeText={(value) =>
               this.props.contactUpdate({prop: 'name', value})
             }
@@ -36,6 +34,7 @@ class ContactForm extends Component {
           <Input
             label="Email"
             placeholder="example@email.com"
+            placeholderTextColor="#000"
             value={this.props.email}
             onChangeText={(value) =>
               this.props.contactUpdate({prop: 'email', value})
@@ -58,12 +57,7 @@ class ContactForm extends Component {
   }
 }
 
-const styles = {
-  pickerTextStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-  },
-};
+const styles = {};
 
 const mapStateToProps = (state) => {
   const {name, phone, email, notes} = state.contactForm;
