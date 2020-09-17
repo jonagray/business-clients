@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {connect} from 'react-redux';
 import {emailChanged, passwordChanged, loginUser} from '../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
@@ -37,13 +38,14 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card>
+      <Card style={styles.container}>
         <CardSection>
           <Input
             onChangeText={this.onEmailChange.bind(this)}
             label="Email"
             placeholder="email@gmail.com"
             value={this.props.email}
+            style={styles.inputStyle}
           />
         </CardSection>
 
@@ -54,6 +56,7 @@ class LoginForm extends Component {
             placeholder="password"
             onChangeText={this.onPasswordChange.bind(this)}
             value={this.props.password}
+            style={styles.inputStyle}
           />
         </CardSection>
 
@@ -75,13 +78,52 @@ const mapStateToProps = ({auth}) => {
   };
 };
 
-const styles = {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 35,
+    backgroundColor: '#fff',
+  },
+  inputStyle: {
+    width: '100%',
+    marginBottom: 15,
+    paddingBottom: 15,
+    alignSelf: 'center',
+    borderColor: '#ccc',
+    borderBottomWidth: 1,
+  },
+  loginText: {
+    color: '#3740FE',
+    marginTop: 25,
+    textAlign: 'center',
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red',
   },
-};
+});
+
+// const styles = {
+//   errorTextStyle: {
+//     fontSize: 20,
+//     alignSelf: 'center',
+//     color: 'red',
+//   },
+// };
 
 export default connect(mapStateToProps, {
   emailChanged,

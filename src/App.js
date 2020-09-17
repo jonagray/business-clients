@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
-import {create} from 'react-test-renderer';
 import {View} from 'react-native';
-// import firebase from 'firebase';
 import firebase from './firebase/config';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
