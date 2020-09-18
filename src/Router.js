@@ -5,7 +5,6 @@ import LoginForm from './components/LoginForm';
 import ContactList from './components/ContactList';
 import ContactCreate from './components/ContactCreate';
 import ContactEdit from './components/ContactEdit';
-import {Feather} from 'feather-icons';
 
 const RouterComponent = () => {
   return (
@@ -24,10 +23,10 @@ const RouterComponent = () => {
 
         <Scene key="main">
           <Scene
-            rightTitle="Add"
             onRight={() => {
               Actions.contactCreate();
             }}
+            rightButtonImage={require('./assets/icons8-plus-50.png')}
             key="contactList"
             component={ContactList}
             title="Contacts"
@@ -100,6 +99,9 @@ const styles = StyleSheet.create({
   navTitle: {
     color: 'white',
     fontWeight: 'bold',
+  },
+  icon: {
+    fontSize: 24,
   },
 });
 
