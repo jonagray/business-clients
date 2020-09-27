@@ -1,18 +1,17 @@
 import React from 'react';
-import { Text, View, Modal, StyleSheet } from 'react-native';
-import { CardSection } from './CardSection';
-import { Button } from './Button';
+import {Text, View, Modal, StyleSheet} from 'react-native';
+import {CardSection} from './CardSection';
+import {Button} from './Button';
 
-const Confirm = ({ children, visible, onAccept, onDecline }) => {
-  const { containerStyle, textStyle, cardSectionStyle } = styles;
+const Confirm = ({children, visible, onAccept, onDecline}) => {
+  const {containerStyle, textStyle, cardSectionStyle} = styles;
 
   return (
     <Modal
       visible={visible}
       transparent
       animationType="slide"
-      onRequestClose={() => {}}
-    >
+      onRequestClose={() => {}}>
       <View style={containerStyle}>
         <CardSection style={cardSectionStyle}>
           <Text style={textStyle}>{children}</Text>
@@ -45,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Confirm };
+export {Confirm};

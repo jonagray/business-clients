@@ -20,6 +20,7 @@ const LargeInput = ({
         style={inputStyle}
         value={value}
         onChangeText={onChangeText}
+        multiline={true}
       />
     </View>
   );
@@ -40,10 +41,10 @@ const styles = {
     flex: 1,
   },
   containerStyle: {
-    height: 100,
+    height: 200,
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'stretch',
   },
 };
 
