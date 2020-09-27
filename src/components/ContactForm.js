@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import {connect} from 'react-redux';
-import {contactUpdate} from '../actions';
-import {CardSection, Input} from './common';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { contactUpdate } from '../actions';
+import { CardSection, Input, LargeInput } from './common';
 
 class ContactForm extends Component {
   render() {
@@ -14,7 +14,7 @@ class ContactForm extends Component {
             placeholder="Jane"
             value={this.props.name}
             onChangeText={(value) =>
-              this.props.contactUpdate({prop: 'name', value})
+              this.props.contactUpdate({ prop: 'name', value })
             }
           />
         </CardSection>
@@ -25,7 +25,7 @@ class ContactForm extends Component {
             placeholder="555-555-5555"
             value={this.props.phone}
             onChangeText={(value) =>
-              this.props.contactUpdate({prop: 'phone', value})
+              this.props.contactUpdate({ prop: 'phone', value })
             }
           />
         </CardSection>
@@ -37,19 +37,21 @@ class ContactForm extends Component {
             placeholderTextColor="#000"
             value={this.props.email}
             onChangeText={(value) =>
-              this.props.contactUpdate({prop: 'email', value})
+              this.props.contactUpdate({ prop: 'email', value })
             }
           />
         </CardSection>
 
-        <CardSection>
-          <Input
+        <CardSection style={styles.largeInput}>
+          <LargeInput
+            style={styles.input}
             label="Notes"
             placeholder="Business Notes"
             value={this.props.notes}
             onChangeText={(value) =>
-              this.props.contactUpdate({prop: 'notes', value})
+              this.props.contactUpdate({ prop: 'notes', value })
             }
+            multiline={true}
           />
         </CardSection>
       </View>
@@ -57,12 +59,20 @@ class ContactForm extends Component {
   }
 }
 
-const styles = {};
+const styles = StyleSheet.create({
+  largeInput: {
+    height: 200,
+    maxHeight: 200,
+  },
+  input: {
+    height: 200,
+  }
+});
 
 const mapStateToProps = (state) => {
-  const {name, phone, email, notes} = state.contactForm;
+  const { name, phone, email, notes } = state.contactForm;
 
-  return {name, phone, email, notes};
+  return { name, phone, email, notes };
 };
 
-export default connect(mapStateToProps, {contactUpdate})(ContactForm);
+export default connect(mapStateToProps, { contactUpdate })(ContactForm);
