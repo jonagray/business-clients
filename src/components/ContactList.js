@@ -17,7 +17,7 @@ class ContactList extends Component {
       <SafeAreaView style={{marginTop: 50}}>
         <View styles={styles.container}>
           <FlatList
-            data={this.props.contact}
+            data={this.props.contact.sort((a, b) => a.name.localeCompare(b.name))}
             keyExtractor={(item) => item.key}
             renderItem={this.renderItem.bind(this)}
           />

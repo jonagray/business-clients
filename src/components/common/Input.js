@@ -14,7 +14,8 @@ const Input = ({label, value, onChangeText, placeholder, secureTextEntry}) => {
         style={inputStyle}
         value={value}
         onChangeText={onChangeText}
-        multiline={true}
+        multiline={false}
+        keyboardType={'email-address'}
       />
     </View>
   );

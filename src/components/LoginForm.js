@@ -46,6 +46,7 @@ class LoginForm extends Component {
             placeholder="email@gmail.com"
             value={this.props.email}
             style={styles.inputStyle}
+            keyboardType={'email-address'}
           />
         </CardSection>
 
