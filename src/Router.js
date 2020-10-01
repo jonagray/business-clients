@@ -2,6 +2,7 @@ import React from 'react';
 import {Scene, Router, Actions} from 'react-native-router-flux';
 import {SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
 import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 import ContactList from './components/ContactList';
 import ContactCreate from './components/ContactCreate';
 import ContactEdit from './components/ContactEdit';
@@ -17,9 +18,18 @@ const RouterComponent = () => {
             title="Please Login"
             navigationBarStyle={styles.navBar}
             titleStyle={styles.navTitle}
-            initial
+            initial={true}
+            footer
+          />
+          <Scene
+            key="signup"
+            component={SignupForm}
+            title="Sign Up"
+            navigationBarStyle={styles.navBar}
+            titleStyle={styles.navTitle}
           />
         </Scene>
+        
 
         <Scene key="main">
           <Scene
@@ -29,7 +39,7 @@ const RouterComponent = () => {
             rightButtonImage={require('./assets/icons8-plus-50.png')}
             key="contactList"
             component={ContactList}
-            title="Contacts"
+            title="My Business Contacts"
             navigationBarStyle={styles.navBar}
             titleStyle={styles.navTitle}
             initial

@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
-import {emailChanged, passwordChanged, loginUser, signupUser} from '../actions';
+import {
+  emailChanged,
+  passwordChanged,
+  passwordConfirm,
+  signupUser,
+} from '../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
 
-class LoginForm extends Component {
+class SignupForm extends Component {
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -15,16 +18,22 @@ class LoginForm extends Component {
     this.props.passwordChanged(text);
   }
 
+  onConfirmPasswordChange(text) {
+    this.props.passwordConfirm(text);
+  }
+
   onButtonPress() {
-    const {email, password} = this.props;
-    this.props.loginUser({email, password});
+    const {email, password, confirmedPassword} = this.props;
+    if (this.props.password === this.props.confirmedPassword) {
+      this.props.signupUser({email, password, confirmedPassword});
+    }
   }
 
   renderButton() {
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
-    return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>;
+    return <Button onPress={this.onButtonPress.bind(this)}>Sign Up</Button>;
   }
 
   renderError() {
@@ -35,6 +44,14 @@ class LoginForm extends Component {
         </View>
       );
     }
+  }
+
+  confirmError() {
+    return (
+      <View style={{backgroundColor: 'white'}}>
+        <Text style={styles.errorTextStyle}>Passwords Do Not Match</Text>
+      </View>
+    );
   }
 
   render() {
@@ -62,38 +79,35 @@ class LoginForm extends Component {
           />
         </CardSection>
 
+        <CardSection>
+          <Input
+            secureTextEntry
+            label="Confirm"
+            placeholder="retype password"
+            onChangeText={this.onConfirmPasswordChange.bind(this)}
+            value={this.props.confirmedPassword}
+            style={styles.inputStyle}
+          />
+        </CardSection>
+
         {this.renderError()}
+        {this.props.password !== this.props.confirmedPassword &&
+        this.props.confirmedPassword.length > 1
+          ? this.confirmError()
+          : null}
 
         <CardSection>{this.renderButton()}</CardSection>
-        <Text />
-        {/* <Button
-            dark
-            bordered
-            style={{alignSelf: 'center', margin: 30}}
-            onPress={() => {
-              Actions.signup();
-            }}>
-            <Text>Create an account</Text>
-          </Button> */}
-        <TouchableOpacity
-          dark
-          bordered
-          style={{alignSelf: 'center', marginTop: 5}}
-          onPress={() => {
-            Actions.signup();
-          }}>
-          <Text style={styles.linkTextStyle}>Create an account</Text>
-        </TouchableOpacity>
       </Card>
     );
   }
 }
 
 const mapStateToProps = ({auth}) => {
-  const {email, password, error, loading} = auth;
+  const {email, password, confirmedPassword, error, loading} = auth;
   return {
     email,
     password,
+    confirmedPassword,
     error,
     loading,
   };
@@ -104,8 +118,8 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    padding: 35,
+    justifyContent: 'flex-end',
+    padding: 30,
     backgroundColor: '#fff',
   },
   inputStyle: {
@@ -136,15 +150,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'red',
   },
-  linkTextStyle: {
-    fontSize: 15,
-    alignSelf: 'center',
-    color: 'blue',
-  },
 });
 
 export default connect(mapStateToProps, {
   emailChanged,
   passwordChanged,
-  loginUser,
-})(LoginForm);
+  passwordConfirm,
+  signupUser,
+})(SignupForm);
